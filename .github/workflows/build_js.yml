@@ -16,8 +16,6 @@ jobs:
       - name: Build ck-editor
         working-directory: ./django_ckeditor_5
         run: npm run prod
-      - name: Inspect files
-        run: ls -R
       - name: Upload built files
         uses: actions/upload-artifact@v4
         with:
