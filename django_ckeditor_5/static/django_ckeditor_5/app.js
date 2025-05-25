@@ -76,17 +76,16 @@ function createEditors(element = document.body) {
         const config = JSON.parse(
             element.querySelector(`#${script_id}-span`).textContent,
             (key, value) => {
-                console.log({ key, value });
                 var match = value.toString().match(new RegExp('^/(.*?)/([gimy]*)$'));
                 if (match) {
                    var regex = new RegExp(match[1], match[2]);
                    return regex;
                 }
-                if (value.toString().startsWith('-CALLBACK-:')) {
-                   var callbackName = value.toString().split(':')[1]
-                   // callback must be installed as a global function first
-                   var callback = window[callbackName]
-                   return callback;
+                if (value.toString().startsWith('::function::-')) {
+                   var funName = value.toString().split('-')[1]
+                   // callback must be installed into this global object first
+                   var func = window.djangoCKEditor5Functions[funcName]
+                   return func;
                 }
                 return value;
             }
