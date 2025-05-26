@@ -82,7 +82,7 @@ function createEditors(element = document.body) {
                    return regex;
                 }
                 if (value.toString().startsWith('::function::-')) {
-                   var funName = value.toString().split('-')[1]
+                   var funcName = value.toString().split('-')[1]
                    // callback must be installed into this global object first
                    var func = window.djangoCKEditor5Functions[funcName]
                    return func;
